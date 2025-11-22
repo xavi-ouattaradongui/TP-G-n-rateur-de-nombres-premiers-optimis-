@@ -47,3 +47,26 @@
 - [ ] Tester l'application et s'assurer que toutes les fonctionnalités fonctionnent.
 - [x] Ajouter les composants UI manquants comme Button.jsx, Prime.jsx.
 - [ ] Vérifier la cohérence avec les graphiques de machine de Turing (si applicable).
+
+## Répartition des tâches (qui a fait quoi)
+
+- Dongui OUATTARA
+  - Étape 3 : Configuration du routeur TanStack (routes et routeTree.gen.ts)
+  - Étape 12 : Formulaire utilisateur et validation dans PrimesPage.jsx
+  - Étape 11 : Intégration et tests des routes (routes/*)
+
+- ben DIARRA
+  - Étape 5 : Implémentation de l'API simulée (api/fetchApi.js)
+  - Étape 6 : Création du schéma Zod (schemas/numberSchema.js)
+  - Étape 9 : Création du hook TanStack Query (hooks/usePrimeAlea.js)
+
+- Franck evan YAPI
+  - Étape 7 : Service de vérification de primalité (service/verifIsPrime.js)
+  - Étape 8 : Store Zustand pour la gestion des états (stores/usePrimeStore.js)
+  - Étape 13 : Optimisations avec useMemo et revue performance
+
+NOM DES MEMBRES DU GROUPE 
+
+- Dongui OUATTARA
+- ben DIARRA
+- Franck evan YAPI
