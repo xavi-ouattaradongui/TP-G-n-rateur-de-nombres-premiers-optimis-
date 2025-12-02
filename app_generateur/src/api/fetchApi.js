@@ -6,7 +6,8 @@ const numberSchema = z.object({
 
 export async function fetchNumberAlea() {
   await new Promise((resolve) => setTimeout(resolve, 500));
-  const raw = { number: Math.floor(Math.random() * 1000) };
+
+  const raw = { number: Math.floor(Math.random() * 50) + 1 };
 
   return numberSchema.parse(raw);
 }
