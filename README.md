@@ -1,123 +1,52 @@
-Rapport — Générateur de Nombres Premiers Optimisé
-1. Introduction
+# Générateur de nombres premiers optimisé
 
-Dans le cadre de ce travail pratique, nous avons réalisé une application React permettant de générer des nombres aléatoires, de vérifier s’ils sont premiers, ainsi que de proposer un nombre à tester.
-Le projet met en œuvre plusieurs technologies modernes telles que Zustand, TanStack Query, TanStack Router, Zod et TailwindCSS, ainsi que des techniques d’optimisation.
+Application React qui **génère un nombre aléatoire et vérifie s'il est premier**, ou teste un nombre saisi par l'utilisateur. Projet d'équipe centré sur une stack React moderne et l'optimisation des calculs.
 
-2. Objectifs du projet
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
+![TanStack Query](https://img.shields.io/badge/TanStack-Query%20%2B%20Router-FF4154?logo=reactquery&logoColor=white)
+![Zustand](https://img.shields.io/badge/Zustand-5-443E38)
+![Zod](https://img.shields.io/badge/Zod-4-3E67B1?logo=zod&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
 
-Les objectifs principaux étaient les suivants :
+## Fonctionnalités
 
-Générer un nombre aléatoire à partir d’une API simulée.
+- **Nombre aléatoire** entre 1 et 10 000, fourni par une API simulée et mis en cache par TanStack Query
+- **Test de primalité optimisé** : cas simples traités tout de suite (n ≤ 1, 2, nombres pairs), divisions seulement jusqu'à √n
+- **Saisie libre** d'un nombre, validée par un schéma Zod
+- **Historique** des nombres testés, conservé dans un store Zustand
+- **Navigation** entre les pages avec TanStack Router ; calculs mémorisés avec `useMemo`
 
-Vérifier efficacement si un nombre est premier.
+## Lancer le projet
 
-Permettre à l’utilisateur de saisir un nombre et de valider son format.
+Prérequis : Node.js 18+.
 
-Gérer les états internes avec Zustand.
+```bash
+cd app_generateur
+npm install
+npm run dev
+```
 
-Gérer les requêtes asynchrones avec TanStack Query.
+Puis ouvrir <http://localhost:5173>.
 
-Assurer la navigation avec TanStack Router.
+## Architecture
 
-Optimiser les calculs coûteux grâce à useMemo.
+```
+app_generateur/src/
+├── api/fetchApi.js            API simulée (nombre aléatoire)
+├── hooks/usePrimeAlea.js      requête TanStack Query
+├── service/verifIsPrime.js    test de primalité
+├── schemas/numberSchema.js    validation Zod
+├── stores/usePrimeStore.js    état global Zustand
+├── routes/                    pages (TanStack Router)
+└── components/                composants d'interface
+```
 
-Structurer proprement un projet React moderne.
+Le rapport complet du projet (objectifs, choix techniques, répartition des tâches) est dans [`docs/RAPPORT.md`](docs/RAPPORT.md).
 
-3. Technologies utilisées
+## Équipe
 
-Le projet utilise les outils suivants :
-
-React : base de l’application.
-
-Zustand : gestion d’état légère et flexible.
-
-TanStack Query : gestion des données asynchrones.
-
-TanStack Router : navigation entre les pages.
-
-Zod : validation des données utilisateur.
-
-TailwindCSS : mise en forme rapide et modulable.
-
-useMemo : optimisation des calculs intensifs.
-
-4. Structure générale du projet
-
-Le projet a été organisé selon une architecture claire permettant de séparer les responsabilités :
-
-api : contient la fonction simulant une API.
-
-components : composants UI réutilisables.
-
-hooks : hooks personnalisés liés aux requêtes.
-
-pages : pages principales de l’application.
-
-routes : gestion des routes avec TanStack Router.
-
-schemas : schémas de validation Zod.
-
-service : fonctions métier, dont le test de primalité.
-
-stores : gestion des états via Zustand.
-
-Cette structure permet une évolution facile et un maintien propre du code.
-
-5. Fonctionnement de l’application
-5.1 Génération d’un nombre aléatoire
-
-Une API simulée renvoie un nombre compris entre 1 et 10 000. La requête est gérée par TanStack Query, permettant d’utiliser le cache, la gestion du chargement et la facilité de réexécution.
-
-5.2 Vérification de la primalité
-
-La fonction de test utilise une méthode optimisée reposant sur les points suivants :
-
-gestion immédiate des cas simples (n ≤ 1, n = 2, n pair) ;
-
-itération uniquement jusqu’à la racine carrée du nombre ;
-
-élimination des divisions inutiles.
-
-5.3 Entrée utilisateur
-
-L’utilisateur peut entrer un nombre qui est automatiquement validé par Zod afin d’éviter les erreurs de type ou de format.
-
-5.4 Gestion de l’état
-
-Zustand permet de stocker :
-
-l’historique des nombres testés,
-
-le résultat des vérifications,
-
-l’affichage conditionnel des éléments.
-
-5.5 Optimisation
-
-Les calculs de primalité, potentiellement coûteux pour les grands nombres, sont optimisés grâce à useMemo afin d’éviter les recalculs inutiles.
-
-6. Répartition des tâches dans le groupe
-6.1 Dongui OUATTARA
-
-Mise en place du routeur TanStack.
-
-Création du formulaire utilisateur et validation Zod.
-
-Tests et intégration des routes.
-
-6.2 ben DIARRA
-
-Développement de l’API simulée.
-
-Création du schéma Zod.
-
-Développement du hook TanStack Query.
-
-6.3 Franck Evan YAPI
-
-Création du service de vérification de primalité.
-
-Mise en place du store Zustand.
-
-Optimisations via useMemo et revue des performances.
+| Membre | Rôle principal |
+|---|---|
+| **Dongui OUATTARA** ([@xavi-ouattaradongui](https://github.com/xavi-ouattaradongui)) | Routeur TanStack, formulaire et validation Zod, intégration des routes |
+| **Ben DIARRA** | API simulée, schéma Zod, hook TanStack Query |
+| **Franck Evan YAPI** | Service de primalité, store Zustand, optimisations |
